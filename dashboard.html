@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+<body>
+
+<div class="navbar">
+  ReLoop – Waste Marketplace
+
+  <span id="time"></span>
+
+  <button onclick="logout()" style="float:right;">Logout</button>
+</div>
+<div class="card">
+  <button onclick="showSupplier()">
+    <i class="fa-solid fa-truck"></i> Supplier Panel
+  </button>
+  
+  <button onclick="showBuyer()">
+    <i class="fa-solid fa-cart-shopping"></i> Buyer Panel
+  </button>
+</div>
+
+
+
+<div class="stats-row">
+  <div class="card">
+    
+  <h3><i class="fa fa-recycle"></i> Total Materials Listed</h3>
+  <p id="totalMaterials">0</p>
+</div>
+
+<div class="card">
+  <h3><i class="fa fa-users"></i> Active Buyers</h3>
+  <p id="activeBuyers">0</p>
+</div>
+
+<div class="card">
+  <h3><i class="fa fa-arrow-right-arrow-left"></i> Transactions Today</h3>
+  <p id="transactions">0</p>
+</div>
+
+    
+    
+    
+  </div>
+
+  
+    
+  </div>
+  <div id="map" style="height:300px; border-radius:12px;"></div>
+
+</div>
+
+  
+
+  <h3>Add Material</h3>
+  
+  <form>
+  <input id="material" placeholder="Material Type (Plastic, Paper)">
+  
+  <input id="quantity" placeholder="Quantity (kg)" onkeyup="suggestPrice()">
+
+  <input id="location" placeholder="Location">
+  <input id="price" placeholder="Expected Price">
+  <p id="priceSuggestion"></p>
+
+  <button type="button" onclick="addMaterial()">Submit</button>
+  <input type="file" id="photoUpload" accept="image/*">
+<img id="preview" width="120" style="margin-top:10px;">
+<button type="button" onclick="analyzeImage()">Analyze Waste</button>
+
+<p id="aiResult"></p>
+<div id="supplierPanel">
+  <h3>Supplier – Add Material</h3>
+  <!-- existing form here -->
+</div><div id="buyerPanel" style="display:none;">
+  <h3>Buyer – Find Material</h3>
+
+  <input id="buyerSearch" placeholder="Search Material">
+  <button onclick="searchTable()">Search</button>
+
+  <button onclick="showToast('Purchase Request Sent')">
+    Request Purchase
+  </button>
+</div>
+
+
+
+</form>
+
+  </div>
+  
+
+<!-- Dashboard Content Above -->
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+      <span onclick="closeModal()">×</span>
+      <p id="modalText">Hello</p>
+    </div>
+  </div>
+  <div id="loader" class="loader"></div>
+
+
+  
+  <script src="script.js"></script>
+
+
+  <div class="card">Live Marketplace Analytics</div>
+
+  <div id="toast" class="toast">Success</div>
+  <div class="card">
+    <input id="searchInput" placeholder="AI Smart Match Materials..." onkeyup="searchTable()">
+
+
+
+    <table id="materialTable">
+      <tr>
+      <th>Material</th>
+      <th>Qty</th>
+      <th>Location</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Track</th>
+      </tr>
+      </table>
+      <button onclick="showToast('Supplier Notified Successfully')">
+        Notify Supplier
+        </button>
+        <div class="card">
+          <h3>Material Location Map</h3>
+          <iframe
+          id="mapFrame"
+          width="100%"
+          height="300"
+          style="border:0; border-radius:12px;">
+        </iframe>
+        
+        
+        </div>
+        
+        
+    
+  
+    
+  </div>
+  
+  <footer>
+    Built for Hackathon 2026
+  </footer>
+  </body>
+  </html>
+  
