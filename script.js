@@ -353,19 +353,19 @@ function loadNotifications(){
 window.onload = function(){
   loadNotifications();
 };
-function loadBuyerNotifications(){
-  let list = document.getElementById("notificationList");
-  if(!list) return;
-
-  let notes = getBuyerNotes();
+function loadBuyerNotifications() {
+  const list = document.getElementById("notificationList");
   list.innerHTML = "";
 
-  notes.slice(-5).reverse().forEach(n=>{
-    let li = document.createElement("li");
-    li.innerText = n;
+  const notifications = ["Order Placed", "New Supplier Joined"];
+
+  notifications.forEach(n => {
+    const li = document.createElement("li");
+    li.textContent = n;
     list.appendChild(li);
   });
 }
+
 
 function loadSupplierNotifications(){
   let list = document.getElementById("notificationList");
@@ -446,19 +446,8 @@ function trackOrder(id){
 
   openModal(`Order Status: ${order.status}`);
 }
-function loadMaterialsFromBackend(){
-  fetch("http://localhost:3000/materials")
-  .then(res => res.json())
-  .then(data => {
-    console.log(data);
-    // later you can fill table here
-  });
-}
-function loadMaterialsFromBackend(){
-  fetch("http://localhost:3000/materials")
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);   // later you can fill table here
-    })
-    .catch(err => console.log(err));
-}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadBuyerNotifications();
+});
